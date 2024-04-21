@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Key Example</title>
+    <title>Escape Key Example</title>
+    <title>New Page</title>
+    <link rel="stylesheet" href="./css/work.css">
+</head>
+
+<body>
+    <div class="top">
+        <div class="left" style="width: 550px; height: 600px;">
+            <div class="list-box">
+            </div>
+            <div class="list-detail" style="display: none;">
+                <div class="list-detailxxx">
+                    <img src="" alt="">
+                    <div class="title"></div>
+                    <div class="info">Phone:</div>
+                    <div class="info">Hours:</div>
+                    <div class="info">Reviews:</div>
+                    <div class="info">Preference:</div>
+                    <div class="info">Allergy-Friendly:</div>
+                    <div class="info">Menu:</div>
+                    <div class="info">Official website:</div>
+                </div>
+                <img class="img" id="img" src="./image/xin2.png" alt="" onclick="shou()">
+            </div>
+            <div class="favorite" style="display: none;">
+                <div></div>
+                <div class="list-box" id="favorite-box">
+                    <div class="favorite-title">Favorite Restaurant</div>
+
+                </div>
+            </div>
+            <div class="chartBox" style="display: none;">
+                <div class="header" >
+                    <select>
+                        <option value="Group">Group</option>
+                        <option value="Vegan">Vegan</option>
+                        <option value="Healthy">Healthy</option>
+                    </select>
+                </div>
+                <div class="time">Sunday 09:30</div>
+                <div class="info-list">
+                    <img src="./image/3.jpg" alt="">
+                    <div class="content">你好！</div>
+                </div>
+                <div class="chart" id="chart">
+
+                </div>
+                <div>
+                    <input class="input" id="myInput" type="text" placeholder="Enter"
+                        onkeydown="handleEnter(event, this)">
+                </div>
+            </div>
+        </div>
+        <div class="right" style="width: 700px; height: 600px;">
+            <div class="input-container">
+                <input type="text" id="userInput" style="width: 642px; height: 34px;" placeholder="Enter Restaurant, Allergy, or Preference">
+                <button onclick="handleInput()" style="width: 50px; height: 34px;">Enter</button>
+            </div>
+            <div class="iframe-container">
+                <iframe style="flex: 1" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5943.409598768618!2d-87.63851529569396!3d41.85618036175108!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e2d9b68bb5335%3A0x85265e622596c593!2s88%20Marketplace!5e0!3m2!1sen!2sus!4v1713579276117!5m2!1sen!2sus" width="700" height="550" style="border:0;" allowfullscreen=""
+                    loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+    <div class="botton">
+        <div class="select" onclick="AllergyFun()">
+            Allergy
+            <div class="box" style="display: none;">
+                <div onclick="handleItemClick('Milk')">Milk</div>
+                <div onclick="handleItemClick('Egg')">Egg</div>
+                <div onclick="handleItemClick('Nuts')">Nuts</div>
+                <div onclick="handleItemClick('Shellfish')">Shellfish</div>
+                <div onclick="handleItemClick('Wheat')">Wheat</div>
+                <div onclick="handleItemClick('Peanut')">Peanut</div>
+                <div onclick="handleItemClick('Gluten Free')">Gluten Free</div>
+
+            </div>
+        </div>
+        <div class="select" onclick="AllergyFun()">
+            Preference
+            <div class="box1" style="display: none;">
+                <div onclick="handleItemClick('Vegan')">Vegan</div>
+                <div onclick="handleItemClick('Organic food')">Organic food</div>
+                <div onclick="handleItemClick('Vegetable oil')">Vegetable oil</div>
+            </div>
+        </div>
+        <div onclick="favoriteShow()">Favorite</div>
+        <div onclick="GroupFun()">Group</div>
+        <div>Setting</div>
+    </div>
+    <script src="./js/work.js"></script>
+</body>
+
+</html>

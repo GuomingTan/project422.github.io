@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Key Example</title>
+    <title>Escape Key Example</title>
+    <title>New Page</title>
+    <link rel="stylesheet" href="./css/work.css">
+</head>
+
+<body>
+<div class="top">
+    <div class="left" style="width: 550px; height: 600px;">
+        <div class="list-box">
+        </div>
+        <div class="list-detail" style="display: none;">
+            <div class="list-detailxxx">
+                <img src="" alt="">
+                <div class="title"></div>
+                <div class="info">Phone:</div>
+                <div class="info">Hours:</div>
+                <div class="info">Reviews:</div>
+                <div class="info">Preference:</div>
+                <div class="info">Allergy-Friendly:</div>
+                <div class="info">Menu:</div>
+                <div class="info">Official website:</div>
+            </div>
+            <img class="img" id="img" src="./image/xin2.png" alt="" onclick="shou()">
+        </div>
+        <div class="favorite" style="display: none;">
+            <div></div>
+            <div class="list-box" id="favorite-box">
+                <div class="favorite-title">Favorite Restaurant</div>
+
+            </div>
+        </div>
+        <div class="chartBox" style="display: none;">
+            <div class="header" style="width: auto;">
+                <select id ="mySelect" onchange="module.handleSelect(event)">
+                    <option value="general">General</option>
+                    <option value="GF-Recipes">GF-Recipes</option>
+                    <option value="GF-Restaurants">GF-Restaurants</option>
+                    <option value="GF-Advice">GF-Advice</option>
+                    <option value="Vegan-Recipes">Vegan-Recipes</option>
+                    <option value="Vegan-Restaurants">Vegan-Restaurants</option>
+                    <option value="Vegan-Advice">Vegan-Advice</option>
+                    <option value="Big Star">Big Star</option>
+                    <option value="Defloured Bakery">Defloured Bakery</option>
+                    <option value="Little Goat Diner">Little Goat Diner</option>
+                    <option value="Medici">Medici</option>
+                    <option value="Monteverde">Monteverde</option>
+                    <option value="Parlor-Pizza">Parlor-Pizza</option>
+                    <option value="Piccolo Sogno">Piccolo Sogno</option>
+                    <option value="Quartino-Ristorante">Quartino-Ristorante</option>
+                    <option value="Sprinkles Chicago">Sprinkles Chicago</option>
+                    <option value="Summer House Santa Monica">Summer House Santa Monica</option>
+                    <option value="The Chicago Diner">The Chicago Diner</option>
+                    <option value="RPM Italian">RPM Italian</option>
+                    <option value="88 Marketplace">88 Marketplace</option>
+
+                </select>
+            </div>
+            <div class="time">Be Kind and Respectful!</div>
+            <div class="chart" id="chart">
+            </div>
+            <div >
+                <input class="input" id="myInput"  style="width: auto;" type="text" placeholder="Enter" onkeydown="module.sendMsg(event) ">
+            </div>
+        </div>
+    </div>
+    <div class="right" style="width: 700px; height: 600px;">
+        <div class="input-container">
+            <input type="text" id="userInput" style="width: 642px; height: 34px;" placeholder="Enter Restaurant, Allergy, or Preference">
+            <button onclick="handleInput()" style="width: 50px; height: 34px;">Enter</button>
+        </div>
+        <div class="iframe-container">
+            <iframe style="flex: 1" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5943.409598768618!2d-87.63851529569396!3d41.85618036175108!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e2d9b68bb5335%3A0x85265e622596c593!2s88%20Marketplace!5e0!3m2!1sen!2sus!4v1713579276117!5m2!1sen!2sus" width="700" height="550" style="border:0;" allowfullscreen=""
+                    loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+</div>
+<div class="botton">
+    <div class="select" onclick="AllergyFun()">
+        Allergy
+        <div class="box" style="display: none;">
+            <div onclick="handleItemClick('Milk')">Milk</div>
+            <div onclick="handleItemClick('Egg')">Egg</div>
+            <div onclick="handleItemClick('Nuts')">Nuts</div>
+            <div onclick="handleItemClick('Shellfish')">Shellfish</div>
+            <div onclick="handleItemClick('Wheat')">Wheat</div>
+            <div onclick="handleItemClick('Peanut')">Peanut</div>
+            <div onclick="handleItemClick('Gluten Free')">Gluten Free</div>
+
+        </div>
+    </div>
+    <div class="select" onclick="AllergyFun()">
+        Preference
+        <div class="box1" style="display: none;">
+            <div onclick="handleItemClick('Vegan')">Vegan</div>
+            <div onclick="handleItemClick('Organic food')">Organic food</div>
+            <div onclick="handleItemClick('Vegetable oil')">Vegetable oil</div>
+        </div>
+    </div>
+    <div onclick="favoriteShow()">Favorites</div>
+    <div onclick="GroupFun()">Group Chats</div>
+</div>
+<script src="./js/work.js"></script>
+<script>
+    module = {};
+</script>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+    import { getDatabase, ref, set, onChildAdded, off } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyBcO4r-_dKJoQRng9kUOa_nUpDA4j1GjdI",
+        authDomain: "chat-687da.firebaseapp.com",
+        projectId: "chat-687da",
+        storageBucket: "chat-687da.appspot.com",
+        messagingSenderId: "515208004919",
+        appId: "1:515208004919:web:fa3816c490298cc06386b2",
+        measurementId: "G-GS0JV9G3GV"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    var msgTxt = document.getElementById('myInput');
+    var stringGotten = window.localStorage.getItem("user");
+    var userData = JSON.parse(stringGotten);
+    var sender = userData.email;
+    var roomId = "general";
+    var roomRef = ref(db, "rooms/" + roomId + "/messages"); // Declare roomRef variable outside of the functions to make it accessible globally
+
+    var listener = onChildAdded(roomRef, (data) => {
+        var senderEmail = data.val().sender;
+        var chart = document.getElementById('chart');
+        var isCurrentUser = senderEmail === sender;
+        var messageContent = data.val().msg;
+        var html;
+        if (!isCurrentUser) {
+            html = '<div class="content" style="margin-right: auto">' + data.val().sender + ': ' + messageContent + '</div>';
+        } else {
+            html = '<div style="text-align: right;">' +
+                '<div style="display: inline-block; vertical-align: middle;"></div>' +
+                '<div class="content" style="display: inline-block; vertical-align: middle;">' + data.val().sender + ': ' + messageContent + '</div>' + '</div>';
+        }
+        chart.appendChild(createMenuItem1(html));
+    });
+
+    module.handleSelect = function handleSelectChange(event) {
+        var selectElement = document.getElementById("mySelect");
+        var selectedValue = selectElement.value;
+        if (selectedValue === 'GF-Recipes') {
+            roomId = "GF-Recipes";
+        } else if (selectedValue === 'GF-Restaurants') {
+            roomId = "GF-Restaurants";
+        } else if (selectedValue === 'GF-Advice') {
+            roomId = "GF-Advice";
+        } else if (selectedValue === 'general'){
+            roomId = "general";
+        }
+        else if (selectedValue === 'Vegan-Recipes'){
+            roomId = "Vegan-Recipes";
+        }
+        else if (selectedValue === 'Vegan-Restaurants'){
+            roomId = "Vegan-Restaurants";
+        }
+        else if (selectedValue === 'Vegan-Advice'){
+            roomId = "Vegan-Advice";
+        }
+        else if (selectedValue === 'Big Star'){
+            roomId = "Big Star";
+        }
+        else if (selectedValue === 'Defloured Bakery'){
+            roomId = "Defloured Bakery";
+        }
+        else if (selectedValue === 'Little Goat Diner'){
+            roomId = "Little Goat Diner";
+        }
+        else if (selectedValue === 'Medici'){
+            roomId = "Medici";
+        }
+        else if (selectedValue === 'Monteverde'){
+            roomId = "Monteverde";
+        }
+        else if (selectedValue === 'Parlor-Pizza'){
+            roomId = "Parlor-Pizza";
+        }
+        else if (selectedValue === 'Piccolo Sogno'){
+            roomId = "Piccolo Sogno";
+        }
+        else if (selectedValue === 'Quartino-Ristorante'){
+            roomId = "Quartino-Ristorante";
+        }
+        else if (selectedValue === 'RPM Italian'){
+            roomId = "RPM Italian";
+        }
+        else if (selectedValue === 'Sprinkles Chicago'){
+            roomId = "Sprinkles Chicago";
+        }
+        else if (selectedValue === 'Summer House Santa Monica'){
+            roomId = "Summer House Santa Monica";
+        }
+        else if (selectedValue === 'The Chicago Diner'){
+            roomId = "The Chicago Diner";
+        }
+        else if (selectedValue === '88 Marketplace'){
+            roomId = "88 Marketplace";
+        }
+
+        var chart = document.getElementById('chart');
+        chart.innerHTML = '';
+        roomRef = ref(db, "rooms/" + roomId + "/messages");
+        listener = onChildAdded(roomRef, (data) => {
+            var senderEmail = data.val().sender;
+            var chart = document.getElementById('chart');
+            var isCurrentUser = senderEmail === sender;
+            var messageContent = data.val().msg;
+            var html;
+            if (!isCurrentUser) {
+                html = '<div class="content" style="margin-right: auto">' + data.val().sender + ': ' + messageContent + '</div>';
+            } else {
+                html = '<div style="text-align: right;">' +
+                    '<div style="display: inline-block; vertical-align: middle;"></div>' +
+                    '<div class="content" style="display: inline-block; vertical-align: middle;">' + data.val().sender + ': ' + messageContent + '</div>' + '</div>';
+            }
+            chart.appendChild(createMenuItem1(html));
+        });
+    }
+
+    module.sendMsg = function sendMsg(event) {
+        if (event.key === 'Enter'){
+            var msg = msgTxt.value;
+            var timestamp = new Date().getTime();
+            var roomMsgRef = ref(db, "rooms/" + roomId + "/messages/" + timestamp);
+            set(roomMsgRef, {
+                msg: msg,
+                sender: sender
+            });
+            msgTxt.value = '';
+        }
+    }
+    function createMenuItem1(name) {
+        let li = document.createElement('div');
+        li.className = "list-in";
+        li.innerHTML = name;
+        return li;
+    }
+</script>
+</body>
+
+</html>
